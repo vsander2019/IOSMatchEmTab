@@ -22,7 +22,8 @@ class ConfigSceneViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBOutlet weak var orangeSubView: UIView!
+    
     /*
     // MARK: - Navigation
 

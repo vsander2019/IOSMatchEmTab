@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-99" y="111"/>
+            <point key="canvasLocation" x="738" y="903"/>
         </scene>
         <!--ConfigScene-->
         <scene sceneID="G6V-G5-TRK">
@@ -31,14 +31,24 @@
                     <view key="view" contentMode="scaleToFill" id="k3n-OJ-TFu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eCm-5f-qab">
+                                <rect key="frame" x="87" y="260" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="P7h-Hm-l8d"/>
                         <color key="backgroundColor" red="1" green="0.61093293098284529" blue="0.88878086697604775" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="ConfigScene" id="rUq-UI-gJa"/>
+                    <connections>
+                        <outlet property="orangeSubView" destination="eCm-5f-qab" id="V9s-s3-fzv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0CN-3E-JxT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1636" y="402"/>
+            <point key="canvasLocation" x="1635" y="522"/>
         </scene>
         <!--MatchEmScene-->
         <scene sceneID="4Qo-qI-gQJ">
@@ -57,6 +67,13 @@
                                     <action selector="toggleBadge:" destination="DRD-gB-hmJ" eventType="touchUpInside" id="dWM-Wa-goo"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wQk-IC-S5E">
+                                <rect key="frame" x="153" y="448" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="changeAlpha:" destination="DRD-gB-hmJ" eventType="valueChanged" id="erb-RY-yo2"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dpF-2S-MQj"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
@@ -90,6 +107,9 @@
     <resources>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
