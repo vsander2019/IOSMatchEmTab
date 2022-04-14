@@ -18,6 +18,7 @@
 		ACA943B52807A17C008F7C17 /* MatchEmTabUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA943B42807A17C008F7C17 /* MatchEmTabUITestsLaunchTests.swift */; };
 		ACA943C22807AA34008F7C17 /* MatchEmSceneControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA943C12807AA34008F7C17 /* MatchEmSceneControllerViewController.swift */; };
 		ACA943C42807ABED008F7C17 /* ConfigSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA943C32807ABED008F7C17 /* ConfigSceneViewController.swift */; };
+		ACA943C82807C3BE008F7C17 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA943C72807C3BE008F7C17 /* Utility.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		ACA943B42807A17C008F7C17 /* MatchEmTabUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEmTabUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		ACA943C12807AA34008F7C17 /* MatchEmSceneControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEmSceneControllerViewController.swift; sourceTree = "<group>"; };
 		ACA943C32807ABED008F7C17 /* ConfigSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSceneViewController.swift; sourceTree = "<group>"; };
+		ACA943C72807C3BE008F7C17 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				ACA943972807A179008F7C17 /* Main.storyboard */,
 				ACA943C32807ABED008F7C17 /* ConfigSceneViewController.swift */,
 				ACA943C12807AA34008F7C17 /* MatchEmSceneControllerViewController.swift */,
+				ACA943C72807C3BE008F7C17 /* Utility.swift */,
 				ACA9439A2807A17B008F7C17 /* Assets.xcassets */,
 				ACA9439C2807A17B008F7C17 /* LaunchScreen.storyboard */,
 				ACA9439F2807A17B008F7C17 /* Info.plist */,
@@ -266,6 +269,7 @@
 			files = (
 				ACA943962807A179008F7C17 /* ViewController.swift in Sources */,
 				ACA943C22807AA34008F7C17 /* MatchEmSceneControllerViewController.swift in Sources */,
+				ACA943C82807C3BE008F7C17 /* Utility.swift in Sources */,
 				ACA943922807A179008F7C17 /* AppDelegate.swift in Sources */,
 				ACA943942807A179008F7C17 /* SceneDelegate.swift in Sources */,
 				ACA943C42807ABED008F7C17 /* ConfigSceneViewController.swift in Sources */,
