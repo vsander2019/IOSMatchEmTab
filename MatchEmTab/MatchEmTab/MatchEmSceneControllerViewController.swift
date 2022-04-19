@@ -22,10 +22,11 @@ class MatchEmSceneViewController: UIViewController {
     // Rectangle creation, so the timer can be stopped
     private var newRectTimer: Timer?
     // Game duration
-    private var gameDuration: TimeInterval = 12.0
+    private var gameDuration: TimeInterval = 11.0
     // Game timer
     private var gameTimer: Timer?
     private var gameInProgress = false
+    private var gameRunning = false
     private var gameTimeRemaining : TimeInterval = 10.0 {
     didSet { gameInfoLabel?.text = gameInfo }
     }
@@ -41,9 +42,16 @@ class MatchEmSceneViewController: UIViewController {
     private var rectanglesTouched: Int = 0 {
     didSet { gameInfoLabel?.text = gameInfo } }
     
+    var adjustableGameSpeed: TimeInterval  = 0.0
     
    
     @IBOutlet weak var gameInfoLabel: UILabel!
+    
+    
+    
+    @IBOutlet var clickableView: UIView!
+    
+    
     
     private var gameInfo: String {
         let labelText = String(format: "Time Remaining:%2.1f \n Pairs Created:%2d \n Pairs Matched:%2d",
@@ -55,6 +63,27 @@ class MatchEmSceneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        
+        tapGestureRecognizer.numberOfTouchesRequired = 2
+
+           // Add Tap Gesture Recognizer
+           clickableView.addGestureRecognizer(tapGestureRecognizer)
+
+    }
+    
+    @IBAction func didTapView(_ sender: UITapGestureRecognizer) {
+        if(gameInProgress && gameRunning){
+            pauseGameRunning()
+        }
+        else if(gameInProgress && !gameRunning)
+        {   unpauseGame()
+            
+        }
+        else{
+            startGameRunning()}
+        print("did tap view", sender)
     }
 
 
@@ -62,8 +91,10 @@ class MatchEmSceneViewController: UIViewController {
     // Don't forget the call to super in these methods
     super.viewWillAppear(animated)
     // Create a single rectangle
-        startGameRunning()
+        /*startGameRunning()*/
     }
+    
+ 
     
     override var prefersStatusBarHidden: Bool {
     return true
@@ -71,7 +102,7 @@ class MatchEmSceneViewController: UIViewController {
     
     @objc private func handleTouch(sender: UIButton) {
         
-        if(!gameInProgress){
+        if(!gameRunning){
             return
         }
         
@@ -161,7 +192,7 @@ extension MatchEmSceneViewController {
         
         
         rectanglePairsCreated += 1;
-        gameTimeRemaining -= newRectInterval
+        gameTimeRemaining -= newRectInterval - adjustableGameSpeed
         
         view.bringSubviewToFront(gameInfoLabel!)
         
@@ -185,7 +216,7 @@ rectangle.removeFromSuperview()
 // Clear the rectangles array
 rectangles.removeAll()
 }
-
+    
     
 }
 
@@ -196,17 +227,22 @@ extension MatchEmSceneViewController {
 private func startGameRunning()
 {
     
-//removeSavedRectangles()
-gameInfoLabel.textColor = .black
+removeSavedRectangles()
+gameInfoLabel.textColor = .white
 gameInfoLabel.backgroundColor = .clear
 gameInProgress = true;
+gameRunning = true;
+gameTimeRemaining = 10.0
+rectanglePairsCreated = 0
+rectanglesTouched = 0
 // Timer to end the game
+    
 gameTimer = Timer.scheduledTimer(withTimeInterval: gameDuration,
 repeats: false)
 { _ in self.stopGameRunning() }
     
 // Timer to produce the rectangles
-newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval,
+newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval - adjustableGameSpeed,
 repeats: true)
 { _ in self.createRectanglePair() }
 }
@@ -217,11 +253,47 @@ gameInfoLabel.textColor = .red
 gameInfoLabel.backgroundColor = .black
 //removeSavedRectangles()
 gameInProgress = false;
+gameRunning = false;
 // Stop the timer
 if let timer = newRectTimer { timer.invalidate() }
 // Remove the reference to the timer object
 self.newRectTimer = nil
 }
     
+func pauseGameRunning(){
+    
+    gameInProgress = true;
+    gameRunning = false;
+    
+    // Stop the timer
+    if let timer = newRectTimer { timer.invalidate() }
+    // Remove the reference to the timer object
+    self.newRectTimer = nil
+    
+    if let timer = gameTimer { timer.invalidate() }
+    // Remove the reference to the timer object
+    self.gameTimer = nil
+    
 }
+    
+func unpauseGame(){
+    
+    gameInProgress = true;
+    gameRunning = true;
+    
+    gameTimer = Timer.scheduledTimer(withTimeInterval: gameTimeRemaining,
+    repeats: false)
+    { _ in self.stopGameRunning() }
+
+    newRectTimer = Timer.scheduledTimer(withTimeInterval: newRectInterval - adjustableGameSpeed,
+    repeats: true)
+    { _ in self.createRectanglePair() }
+    }
+    
+
+    
+}
+    
+    
+
 

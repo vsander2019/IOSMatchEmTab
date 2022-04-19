@@ -30,7 +30,7 @@ class Utility : NSObject {
     static func getRandomLocation(size rectSize: CGSize, screenSize: CGSize) -> CGPoint {
     // Get the screen dimensions
     let screenWidth = screenSize.width
-    let screenHeight = screenSize.height
+    let screenHeight = screenSize.height - 100.0
     // Create a random location/point
     let rectX = randomFloatZeroThroughOne() * (screenWidth - rectSize.width)
     let rectY = randomFloatZeroThroughOne() * (screenHeight - rectSize.height)
