@@ -16,6 +16,7 @@ class MatchEmSceneViewController: UIViewController {
     private let rectSizeMin:CGFloat = 50.0
     private let rectSizeMax:CGFloat = 150.0
     private var randomAlpha = false
+    var rectangleDarkness = 1.0
     private var fadeDuration: TimeInterval = 0.8
     // Rectangle creation interval
     private var newRectInterval: TimeInterval = 1.0
@@ -43,10 +44,10 @@ class MatchEmSceneViewController: UIViewController {
     didSet { gameInfoLabel?.text = gameInfo } }
     
     var adjustableGameSpeed: TimeInterval  = 0.0
+    var adjustableGameTime: TimeInterval = 0.0
     
    
     @IBOutlet weak var gameInfoLabel: UILabel!
-    
     
     
     @IBOutlet var clickableView: UIView!
@@ -55,7 +56,7 @@ class MatchEmSceneViewController: UIViewController {
     
     private var gameInfo: String {
         let labelText = String(format: "Time Remaining:%2.1f \n Pairs Created:%2d \n Pairs Matched:%2d",
-        gameTimeRemaining, rectanglePairsCreated, rectanglesTouched)
+        ceil(gameTimeRemaining), rectanglePairsCreated, rectanglesTouched)
         return labelText
     }
     
@@ -75,14 +76,18 @@ class MatchEmSceneViewController: UIViewController {
     
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {
         if(gameInProgress && gameRunning){
+            print("gonna pause ")
             pauseGameRunning()
         }
         else if(gameInProgress && !gameRunning)
-        {   unpauseGame()
-            
+        {
+            print("gonna upause ")
+            unpauseGame()
         }
         else{
-            startGameRunning()}
+            print("gonna start ")
+            startGameRunning()
+        }
         print("did tap view", sender)
     }
 
@@ -162,6 +167,7 @@ extension MatchEmSceneViewController {
         
         // Do some button/rectangle setup
         rectangle1.backgroundColor = backgroundCol
+        rectangle1.alpha = rectangleDarkness
         rectangle1.setTitle("", for: .normal)
         rectangle1.setTitleColor(.black, for: .normal)
         rectangle1.titleLabel?.font = .systemFont(ofSize: 50)
@@ -172,6 +178,7 @@ extension MatchEmSceneViewController {
         for: .touchUpInside)
         
         rectangle2.backgroundColor = backgroundCol
+        rectangle2.alpha = rectangleDarkness
         rectangle2.setTitle("", for: .normal)
         rectangle2.setTitleColor(.black, for: .normal)
         rectangle2.titleLabel?.font = .systemFont(ofSize: 50)
@@ -192,7 +199,7 @@ extension MatchEmSceneViewController {
         
         
         rectanglePairsCreated += 1;
-        gameTimeRemaining -= newRectInterval - adjustableGameSpeed
+        gameTimeRemaining -= (newRectInterval - adjustableGameSpeed)
         
         view.bringSubviewToFront(gameInfoLabel!)
         
@@ -236,8 +243,8 @@ gameTimeRemaining = 10.0
 rectanglePairsCreated = 0
 rectanglesTouched = 0
 // Timer to end the game
-    
-gameTimer = Timer.scheduledTimer(withTimeInterval: gameDuration,
+gameTimeRemaining += adjustableGameTime
+gameTimer = Timer.scheduledTimer(withTimeInterval: gameDuration + adjustableGameTime,
 repeats: false)
 { _ in self.stopGameRunning() }
     
@@ -258,9 +265,37 @@ gameRunning = false;
 if let timer = newRectTimer { timer.invalidate() }
 // Remove the reference to the timer object
 self.newRectTimer = nil
+    
+
+    
+    if(GameManager.scores.count > 0){
+        
+        if(rectanglesTouched > GameManager.scores.last! || GameManager.scores.count < 3){
+            GameManager.scores.append(rectanglesTouched)
+            GameManager.scores.sort(by: >)
+            if(GameManager.scores.count > 3){
+                GameManager.scores.removeLast()
+            }
+            print(GameManager.scores)
+            
+        }
+    }
+    else{
+        GameManager.scores.append(rectanglesTouched)
+        print(GameManager.scores)
+        
+    }
+
+        
+    
+    
 }
     
 func pauseGameRunning(){
+    
+    if(!gameInProgress){
+        return;
+    }
     
     gameInProgress = true;
     gameRunning = false;
@@ -281,7 +316,7 @@ func unpauseGame(){
     gameInProgress = true;
     gameRunning = true;
     
-    gameTimer = Timer.scheduledTimer(withTimeInterval: gameTimeRemaining,
+    gameTimer = Timer.scheduledTimer(withTimeInterval: gameTimeRemaining + 1,
     repeats: false)
     { _ in self.stopGameRunning() }
 

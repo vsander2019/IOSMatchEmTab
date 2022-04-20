@@ -19,6 +19,7 @@
 		ACA943C22807AA34008F7C17 /* MatchEmSceneControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA943C12807AA34008F7C17 /* MatchEmSceneControllerViewController.swift */; };
 		ACA943C42807ABED008F7C17 /* ConfigSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA943C32807ABED008F7C17 /* ConfigSceneViewController.swift */; };
 		ACA943C82807C3BE008F7C17 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA943C72807C3BE008F7C17 /* Utility.swift */; };
+		ACB71617280F931600CCD45D /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB71616280F931600CCD45D /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		ACA943C12807AA34008F7C17 /* MatchEmSceneControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchEmSceneControllerViewController.swift; sourceTree = "<group>"; };
 		ACA943C32807ABED008F7C17 /* ConfigSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigSceneViewController.swift; sourceTree = "<group>"; };
 		ACA943C72807C3BE008F7C17 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		ACB71616280F931600CCD45D /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				ACA943C32807ABED008F7C17 /* ConfigSceneViewController.swift */,
 				ACA943C12807AA34008F7C17 /* MatchEmSceneControllerViewController.swift */,
 				ACA943C72807C3BE008F7C17 /* Utility.swift */,
+				ACB71616280F931600CCD45D /* GameManager.swift */,
 				ACA9439A2807A17B008F7C17 /* Assets.xcassets */,
 				ACA9439C2807A17B008F7C17 /* LaunchScreen.storyboard */,
 				ACA9439F2807A17B008F7C17 /* Info.plist */,
@@ -270,6 +273,7 @@
 				ACA943962807A179008F7C17 /* ViewController.swift in Sources */,
 				ACA943C22807AA34008F7C17 /* MatchEmSceneControllerViewController.swift in Sources */,
 				ACA943C82807C3BE008F7C17 /* Utility.swift in Sources */,
+				ACB71617280F931600CCD45D /* GameManager.swift in Sources */,
 				ACA943922807A179008F7C17 /* AppDelegate.swift in Sources */,
 				ACA943942807A179008F7C17 /* SceneDelegate.swift in Sources */,
 				ACA943C42807ABED008F7C17 /* ConfigSceneViewController.swift in Sources */,

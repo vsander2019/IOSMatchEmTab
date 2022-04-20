@@ -9,7 +9,10 @@ import UIKit
 
 class ConfigSceneViewController: UIViewController {
     
+
+    
     var MatchEmSceneVC : MatchEmSceneViewController?
+    
     
     required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -27,7 +30,6 @@ class ConfigSceneViewController: UIViewController {
             else{
                 messv.backgroundColor = .systemTeal
                 mesvc.gameInfoLabel.textColor = .black
-                mesvc.gameInfoLabel.backgroundColor = .systemGray
             }
         }
     }
@@ -35,9 +37,32 @@ class ConfigSceneViewController: UIViewController {
     @IBAction func changeTimer(_ sender: UISlider) {
         
         if let mesvc = MatchEmSceneVC, let messv = mesvc.view {
-            mesvc.adjustableGameSpeed = CGFloat(sender.value)
+            mesvc.adjustableGameSpeed = CGFloat(sender.value)/10
         }
         
+    }
+    
+    @IBAction func changeGameLength(_ sender: UISlider) {
+
+        if let mesvc = MatchEmSceneVC, let messv = mesvc.view {
+            mesvc.adjustableGameTime = CGFloat(ceil(sender.value))
+        }
+        
+    }
+    
+    @IBOutlet weak var scoreLabel: UILabel!
+
+    private var scoreInfo: String {
+        let labelText = String(format: "1:%2d \n 2:%2d \n 3:%2d",
+                               GameManager.scores[0], GameManager.scores[1], GameManager.scores[2])
+        return labelText
+    }
+    
+    
+    @IBAction func changeRectAlpha(_ sender: UIStepper) {
+        if let mesvc = MatchEmSceneVC, let messv = mesvc.view {
+        mesvc.rectangleDarkness = 1/CGFloat(sender.value)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +72,8 @@ class ConfigSceneViewController: UIViewController {
                 mesvc.pauseGameRunning()
             }
         }
+        
+        scoreLabel.text = scoreInfo
         
     }
     
